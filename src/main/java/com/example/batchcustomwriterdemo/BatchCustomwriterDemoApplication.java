@@ -46,10 +46,10 @@ public class BatchCustomwriterDemoApplication {
     }
 
     @Bean
-    public CompositeItemWriter<CompositeModel> writer() {
+    public CompositeItemWriter<CompositeModel> writer(DataSource dataSource) {
         CompositeItemWriter<CompositeModel> compositeItemWriter = new CompositeItemWriter<>();
         compositeItemWriter.setDelegates(
-                List.of(new CollegeWriter(),new PersonWriter(),new StudentWriter())
+                List.of(new CollegeWriter(),new PersonWriter(dataSource),new StudentWriter())
         );
         return compositeItemWriter;
     }
